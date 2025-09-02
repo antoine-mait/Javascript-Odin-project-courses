@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  <script>
+    let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
+    console.log(answer)
+
+    for (let i = 1; i <= answer; i++){
+      if ( i % 3 ===0 && i % 5 === 0){
+        console.log("Fizz Buzz")
+      } else if (i % 3 === 0){
+        console.log("Fizz");
+      } else if ( i % 5 === 0){
+        console.log("Buzz");
+      } else {
+        console.log(i);
+      }
+    }
+    // Take user input of number.
+// And write from one to input the number. replace number respecting fizz buzz game
+// if / 3 = Fizz , /5 = Buzz , /both = Fizz buzz , if not = number
+
+  </script>
+
+</body>
+</html>
