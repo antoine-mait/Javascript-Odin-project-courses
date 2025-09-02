@@ -7,30 +7,12 @@ function getComputerChoice(){
     return availableChoice[randomChoice];
 }
 
-//let computerChoice = getComputerChoice()
-// console.log(computerChoice);
 
 function getHumanChoice(){
     let humanChoice = prompt("Rock ? Paper or Scissors ?", "");
-
-//    switch (capitalizefirst(humanChoice)) {
-//    case "Rock":
-//        console.log("Rock")
-//        break;
-//    case "Paper":
-//        console.log("Paper")
-//        break;
-//    case "Scissors":
-//        console.log("Scissors")
-//        break;
-//    default:
-//        console.log("Wrong typo")
-//        break;
-//    }
     return capitalizefirst(humanChoice)
 }
 
-//let humanChoice = getHumanChoice()
 
 function capitalizefirst(string){
     let lower = string.toLowerCase()
