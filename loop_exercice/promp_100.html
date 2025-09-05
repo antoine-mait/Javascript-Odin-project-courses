@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+"use strict";
+
+// promp number > 100;
+// if input < 100 , ask again ; 
+// if else than number , ask again ;
+// else break;
+
+let userInput = prompt("Enter a number greater than 100?");
+userInput = Number(userInput);
+
+while(true){
+    if (userInput < 100 || isNaN(userInput) === true){
+    userInput= prompt("Enter a number greater than 100?");
+    userInput = Number(userInput)
+        continue
+    }
+    else{
+        break
+    }
+}
+// other soluce 
+
+/*
+let num;
+
+do {
+  num = prompt("Enter a number greater than 100?", 0);
+ } while (num <= 100 && num);
+*/
+</script>
