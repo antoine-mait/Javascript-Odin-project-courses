@@ -1,0 +1,59 @@
+<!doctype html>
+<script>
+
+/*
+2 Part of the project
+1- use calculate(str) , taking string like "1+2" in NUMBER operator NUMBER and return result
+    + and - should work 
+2- Then addMethod(name, funct) , teach calculator new operation.
+    it take the operator name and the two argument function funct(a,b)
+
+*/
+function Calculator() {
+  this.calculate = function(str) {
+    let parts = str.split(" ");   // ["3", "+", "7"]
+    let a = +parts[0]; // or let a = Number(parts[0]);
+    let operator = parts[1];
+    let b = +parts[2]; // or let b = Number(parts[2]);
+
+    if (operator === "+") return a + b;
+    if (operator === "-") return a - b;
+  };
+}
+
+let powerCalc = new Calculator;
+
+let result = powerCalc.calculate("7 + 3");
+alert( result ); // 3
+
+/* solution
+function Calculator() {
+
+  this.methods = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b
+  };
+
+  this.calculate = function(str) {
+
+    let split = str.split(' '),
+      a = +split[0],
+      op = split[1],
+      b = +split[2];
+
+    if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+      return NaN;
+    }
+
+    return this.methods[op](a, b);
+  };
+
+  this.addMethod = function(name, func) {
+    this.methods[name] = func;
+  };
+}
+*/
+</script>
+
+
+</html>
