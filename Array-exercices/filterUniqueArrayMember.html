@@ -1,0 +1,20 @@
+<!doctype html>
+<script>
+
+function unique(arr) {
+  let uniqueValue = new Set(arr);
+  let arr1 = [...uniqueValue];
+  return arr1
+  console.log(arr1)
+}
+
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique(strings) ); // Hare, Krishna, :-O
+
+</script>
+
+
+</html>
