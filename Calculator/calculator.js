@@ -23,17 +23,18 @@ document.querySelectorAll("button").forEach((button) => {
 
 function btnAction(event) {
   const btn = event.target;
+  // if number then result.innerHTML show
+  // if operatorselected twice , show result
   console.info(btn.innerText);
   click.push(btn.innerText);
-  
 };
 
 document.querySelector("#btn_equal").addEventListener("click", () => {
   operate();
 });
-
+// use result.innerHTML to continu the calcule
+// save temp result 
 function operate(){
-  result.innerHTML = "";
   let numberA = "";
   let numberB = "";
   let operatorSelected = null;
