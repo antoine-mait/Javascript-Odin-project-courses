@@ -49,7 +49,8 @@
   background-color: darkgray;
   padding : 5px;
 }
-.button{
+.btn_nb,
+.btn_operator{
   padding: calc(var(--size) / 14);
 
 }
