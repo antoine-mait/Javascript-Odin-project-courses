@@ -13,9 +13,15 @@ let usersById = {}
 for (let i =0 ; i < users.length ; i++){
     let user = users[i];
     usersById[user.id] = user;
-    
 }
-console.log(usersById);
+
+// or : 
+function groupById(array) {
+  return array.reduce((obj, value) => {
+    obj[value.id] = value;
+    return obj;
+  }, {})
+}
 
 /*
 // after the call we should have:
