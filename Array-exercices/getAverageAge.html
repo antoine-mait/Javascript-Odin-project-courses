@@ -1,0 +1,25 @@
+<!doctype html>
+<script>
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 29 };
+
+let arr = [ john, pete, mary ];
+let ages = [];
+
+
+function getAverageAge(arr){
+    let totalAge = 0;
+    for (let i=0 ; i< arr.length; i++){
+        let age = arr[i].age;
+        totalAge += arr[i].age;
+    }
+    return totalAge / arr.length ;
+}
+alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+
+</script>
+
+
+</html>
