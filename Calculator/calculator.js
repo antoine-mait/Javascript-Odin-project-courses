@@ -18,18 +18,7 @@ const divide = function(a,b) {
     return a / b ;
 }
 
-const power = function(a,b) {
- return a ** b ;
-};
-
-const factorial = function(n) {
-  let result = 1;
-  for (let i = 1; i <= n; i++){
-    result *= i;
-  }
- return result;	
-};
-
 const operate = function(operator , a , b){
     
 }
+

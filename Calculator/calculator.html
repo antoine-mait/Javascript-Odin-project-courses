@@ -9,32 +9,36 @@
 </head>
 
 <body>
-  <div id="calculator">
-    <div id="display">
-      <p>Result</p>
+<div id="calculator">
+  <div id="display">
+    <p>Result</p>
+  </div>
+
+  <div id="bottom">
+    <div class="button-container numbers">
+      <button class="button number">7</button>
+      <button class="button number">8</button>
+      <button class="button number">9</button>
+      <button class="button number">4</button>
+      <button class="button number">5</button>
+      <button class="button number">6</button>
+      <button class="button number">1</button>
+      <button class="button number">2</button>
+      <button class="button number">3</button>
+      <button class="button number">0</button>
+      <button class="button operator">.</button>
+      <button class="button operator">=</button>
     </div>
-    <div id="bottom">
-      <div id="nb_container">
-        <button class="button" id="number_btn">7</button>
-        <button class="button" id="number_btn">8</button>
-        <button class="button" id="number_btn">9</button>
-        <button class="button" id="number_btn">4</button>
-        <button class="button" id="number_btn">5</button>
-        <button class="button" id="number_btn">6</button>
-        <button class="button" id="number_btn">1</button>
-        <button class="button" id="number_btn">2</button>
-        <button class="button" id="number_btn">3</button>
-        <button class="button" id="number_btn">0</button>
-        <button class="button" id="operator_btn">=</button>
-      </div>
-      <div id="operator_container">
-        <button class="button" id="operator_btn">-</button>
-        <button class="button" id="operator_btn">+</button>
-        <button class="button" id="operator_btn">/</button>
-        <button class="button" id="operator_btn">*</button>
-      </div>
+
+    <div class="button-container operators">
+      <button class="button operator">-</button>
+      <button class="button operator">+</button>
+      <button class="button operator">/</button>
+      <button class="button operator">*</button>
     </div>
   </div>
+</div>
+
   <script src="calculator.js"></script>
 
 </body>

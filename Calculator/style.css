@@ -28,21 +28,24 @@
   align-items: flex-end;
 }
 
-#nb_container {
+.button-container.numbers {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 5px;
+  height: 98%;
   width: 80%;
   background-color: gray;padding : 5px;
 
 }
 
-#operator_container {
+.button-container.operators {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 5px;
   width: 20%;
+  height: 98%;
   background-color: darkgray;
   padding : 5px;
 }
