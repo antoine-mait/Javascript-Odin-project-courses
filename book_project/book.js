@@ -17,6 +17,10 @@ function Book(title , author , page_nb , read_status) {
   this.read_status = read_status;
 }
 
+Book.prototype.toggleRead = function() {
+  this.read_status = !this.read_status;
+};
+
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
@@ -76,6 +80,8 @@ add_btn.addEventListener("click", function(){
                         data.get("author"),
                         data.get("page_nb"),
                         data.get("read_status") === "on");
+
+      form_add.reset();
        
     });
 
@@ -105,8 +111,10 @@ function bookCard(myLibrary){
     card_div.append(text, btn_delete, btn_read);
     library.append(card_div); 
 
-    btn_delete.addEventListener("click", function(e){
-      e.target.parentNode.remove(); 
+    btn_delete.addEventListener("click", () => {
+      const index = myLibrary.findIndex(b => b.id === element.id);
+      if (index !== -1) myLibrary.splice(index, 1);
+      bookCard(myLibrary);
     });
 
     btn_read.addEventListener("click", function(e){
