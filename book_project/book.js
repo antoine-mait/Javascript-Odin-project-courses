@@ -88,8 +88,9 @@ in a each book card , add a remove book button and a read button
 connect the read button with a prototype function that toggle a book instance read status
 */
 
-console.log(bookCard(myLibrary));
+bookCard(myLibrary);
 function bookCard(myLibrary){
+  library.innerHTML = "";
   myLibrary.forEach(element => {
     const card_div = document.createElement("div");
     const btn_delete = document.createElement("button");
