@@ -23,7 +23,6 @@ function capitalizeFirstLetter(string) {
 
 function addBookToLibrary(title, author, page_nb, read_status) {
   myLibrary.push(new Book(title, author, page_nb, read_status));
-  alert(JSON.stringify(myLibrary));
   console.log(myLibrary)
   bookCard(myLibrary);
 }
@@ -82,12 +81,6 @@ add_btn.addEventListener("click", function(){
 
 });
 
-/*
-function loop through the array , display each book on the page , in a card for each
-in a each book card , add a remove book button and a read button 
-connect the read button with a prototype function that toggle a book instance read status
-*/
-
 bookCard(myLibrary);
 function bookCard(myLibrary){
   library.innerHTML = "";
@@ -97,24 +90,38 @@ function bookCard(myLibrary){
     const btn_read = document.createElement("button");
     const text = document.createElement("span");
 
-    card_div.id = "card";
-    btn_delete.id = "btn_delete";
+    card_div.id = "card_" + element.id;
+
+    btn_delete.classList.add("btn_delete");
     btn_delete.innerHTML= "Delete";
+
     btn_read.id = "btn_read";
     btn_read.innerHTML = "Read";
+
     text.id = "book_text";
-    text.textContent =  "Title : " + element.title + "\n" +
-                        "Author : " + element.author + "\n" +
-                        "Number of pages : " + element.page_nb + "\n" +
-                        "Read Status : " + element.read_status + "\n";
+    text.textContent = renderBookText(element);
 
 
     card_div.append(text, btn_delete, btn_read);
-    library.append(card_div);
+    library.append(card_div); 
 
+    btn_delete.addEventListener("click", function(e){
+      e.target.parentNode.remove(); 
+    });
+
+    btn_read.addEventListener("click", function(e){
+      element.read_status = !element.read_status;
+      text.textContent = renderBookText(element);
+    });
   });
-  
 
-}
+function renderBookText(element) {
+  return  "Title : " + element.title + "\n" +
+          "Author : " + element.author + "\n" +
+          "Number of pages : " + element.page_nb + "\n" +
+          "Read Status : " + element.read_status + "\n";
+  }
+
+};
 
 
