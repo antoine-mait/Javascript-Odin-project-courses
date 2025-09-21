@@ -9,25 +9,31 @@
 </head>
 
 <body>
+<div class="username">
+    <input type="text" placeholder="Player 1" class="player1">
+    <p class="score">Score: 0 - 0</p>
+    <input type="text" placeholder="Player 2" class="player2">
+</div>
 
+<div class="board">
+    <div class="tile" data-id="0"><span id="mark0"></span></div>
+    <div class="tile" data-id="1"><span id="mark1"></span></div>
+    <div class="tile" data-id="2"><span id="mark2"></span></div>
+    <div class="tile" data-id="3"><span id="mark3"></span></div>
+    <div class="tile" data-id="4"><span id="mark4"></span></div>
+    <div class="tile" data-id="5"><span id="mark5"></span></div>
+    <div class="tile" data-id="6"><span id="mark6"></span></div>
+    <div class="tile" data-id="7"><span id="mark7"></span></div>
+    <div class="tile" data-id="8"><span id="mark8"></span></div>
+</div>
 
-<!-- 
-    Store Gameboard as an array inside of a Gameboard object so , {[]} 
-    Create an object to control the flow of the game 
-    As less code as possible , using factory
-    Brainstorm to fit the objects in the right place ( player , gameboard ect )
-    First : make it work in console 
-    includ a check for winning if 3 in a row and ties 
-    dont ask for input yet , call fonction and pass argument first
-    Second create an object to handle the display and the DOM logic
-    Write a fonction to render the content on the gameboard of the webpage with X and O 
-    Third , allow user to click on the square to add is mark 
-        make it unable to click if a mark is already there
-    Clean up interface
-    Space to input player name 
-    button to start / restart the game
-    Display element to show the result
--->
+<div id="popover" popover class="winner-popup"></div>
+
+<div class="controls">
+    <button class="start">Start</button>
+    <button class="reset">Reset</button>
+</div>
+
   <script src="tictac.js"></script>
 
 </body>
