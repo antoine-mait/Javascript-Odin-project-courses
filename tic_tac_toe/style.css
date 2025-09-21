@@ -35,7 +35,6 @@ body {
     font-weight: bold;
 }
 
-/* Board */
 .board {
     position: relative;
     display: grid;

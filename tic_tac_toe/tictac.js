@@ -92,6 +92,7 @@ winner: ${this.winner}`);
 
 async function playGame() {
   for (let i = 0; i < 9; i++) {
+    console.log(i)
     if (user1.winner || user2.winner) break;
 
     if (i % 2 === 0) {
@@ -112,6 +113,11 @@ async function playGame() {
         user2.gameStates();
         break;
       }
+    }
+    if (i === 8 && !user1.winner && !user2.winner) {
+      const popover = document.querySelector("#popover");
+      popover.innerHTML = "It's a tie!";
+      popover.showPopover();
     }
   }
 }
