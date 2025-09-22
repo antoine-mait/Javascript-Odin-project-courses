@@ -96,7 +96,7 @@ async function playGame() {
     if (user1.winner || user2.winner) break;
 
     if (i % 2 === 0) {
-      const move = await playerMove("X"); // waits until click
+      const move = await playerMove("X"); 
       placeMark(move, "X");
       if (checkWinner("X")) {
         user1.winner = true;
