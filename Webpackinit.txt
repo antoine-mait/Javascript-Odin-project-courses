@@ -1,0 +1,51 @@
+mkdir webpack-practice                      // Create folder
+cd webpack-practice                         // go in folder
+npm init -y                                 // init package
+mkdir src                                   // Create src folder
+New-Item src/index.js -ItemType File        // create index.js in It
+webpack.config.js                           // Create manually 
+        // webpack.config.js
+        const path = require("path");
+        const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+        module.exports = {
+        mode: "development",
+        entry: "./src/index.js",
+        output: {
+            filename: "main.js",
+            path: path.resolve(__dirname, "dist"),
+            clean: true,
+        },
+        devtool: "eval-source-map",
+        devServer: {
+            watchFiles: ["./src/template.html"],
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+            template: "./src/template.html",
+            }),
+        ],
+        module: {
+            rules: [
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+            },
+            ],
+        },
+        };
+
+
+npm install --save-dev html-webpack-plugin      // Install html handling
+npm install --save-dev style-loader css-loader  // Install CSS handling
+npm install --save-dev html-loader              // Install html img handling
+npx webpack                                     // Webpack It
+npx webpack serve                               // To run the server http://localhost:8080/
