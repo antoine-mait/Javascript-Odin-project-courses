@@ -3,6 +3,7 @@ cd webpack-practice                         // go in folder
 npm init -y                                 // init package
 mkdir src                                   // Create src folder
 New-Item src/index.js -ItemType File        // create index.js in It
+// create template.html in src
 webpack.config.js                           // Create manually 
         // webpack.config.js
         const path = require("path");
