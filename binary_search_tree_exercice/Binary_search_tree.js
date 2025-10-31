@@ -80,14 +80,37 @@ class Tree{
         return current;
     }
 
-    find(value, current = this.root){
-        if(!current){
+    find(value, current = this.root) {
+        if (!current){
             return null;
+        } 
+        if (value === current.attribut) {
+            return current;
         }
-        // return the node with the value
+        if (value < current.attribut) {
+            return this.find(value, current.leftChildren);
+        }
+        return this.find(value, current.rightChildren);
     }
-}
 
+    levelOrderForEach(callback, queue = [this.root]) {
+        if (typeof callback !== "function") {
+            throw new Error("A callback function is required");
+        }
+
+        if (queue.length === 0) return;
+
+        const node = queue.shift();
+        callback(node);
+
+        if (node.leftChildren) queue.push(node.leftChildren);
+        if (node.rightChildren) queue.push(node.rightChildren);
+
+        this.levelOrderForEach(callback, queue);
+    }
+
+
+}
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
   if (node === null) {
