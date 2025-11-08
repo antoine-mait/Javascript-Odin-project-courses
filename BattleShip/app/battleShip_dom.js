@@ -5,7 +5,8 @@ import {
 } from "./battleship.js";
 
 import {
-    renderBoard
+    renderBoard,
+    winPopUp
 } from "./battleShip_html.js"
 
 const nameInput = document.querySelector(".player-name");
@@ -21,16 +22,24 @@ function computerTurns() {
     const cellPos = attackResult.position;
     const result = attackResult.result;
 
-    const cell = document.getElementById(player1.name +"_" + cellPos[0] + "_"+ cellPos[1])
+    const cell = document.getElementById(player1.name + "_" + cellPos[0] + "_" + cellPos[1])
 
     if (result === true) {
         cell.classList.add("hit");
     } else if (result === false) {
         cell.classList.add("miss");
     }
-    
+
     console.log("computer attacked " + player1.name);
     turns++;
+}
+
+function gameOverCheck() {
+    if (player1.board.allSinked === true) {
+        winPopUp(player2.name)
+    } else if (player2.board.allSinked === true) {
+        winPopUp(player1.name)
+    }
 }
 
 document.addEventListener("click", (e) => {
@@ -57,29 +66,34 @@ document.addEventListener("click", (e) => {
         if (turns % 2 === 0 && posSplit[0] === "computer") {
             console.log("Attacking position:", pos);
             console.log("Player2 (computer) ship positions:", player2.board.ships[0].occupiedCells);
-    
+
             const attackResult = player1.attack(player2.board, pos);
             const result = attackResult.result;
 
-             if (result === null) {
+            if (result === null) {
                 console.log("Already attacked this position!");
                 return;
             }
-            
+
             console.log(player1.name + " attacked computer");
             console.log(result)
-            
+
             if (result === true) {
                 cell.classList.add("hit");
             } else {
                 cell.classList.add("miss");
             }
-            
+
             turns++;
         }
     }
     if (turns % 2 !== 0) {
         computerTurns()
+    }
+    gameOverCheck()
+
+    if (e.target.classList.contains("backdrop")) {
+        location.reload();
     }
 });
 

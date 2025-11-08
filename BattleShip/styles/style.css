@@ -66,3 +66,31 @@
   padding: 8px 20px;
   cursor: pointer;
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
+}
+
+.winPopUp {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  
+  background-color: red;
+  color: white;
+  border: 3px solid #333;
+  
+  padding: 40px 60px;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}

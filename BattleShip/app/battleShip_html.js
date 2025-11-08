@@ -17,4 +17,19 @@ export function renderBoard(size, name) {
             }
         }
     }
+};
+
+export function winPopUp(playerName){
+    const gameContainer = document.querySelector(".game-container")
+
+    const backdrop = document.createElement("div");
+    backdrop.classList.add("backdrop");
+
+    const popUp = document.createElement("div");
+    popUp.classList.add("winPopUp")
+    popUp.textContent = playerName + " has won"
+    
+    console.log(playerName + " have won")
+    gameContainer.append(backdrop);
+    gameContainer.append(popUp);
 }
