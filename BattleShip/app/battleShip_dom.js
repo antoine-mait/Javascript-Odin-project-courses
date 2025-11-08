@@ -92,7 +92,7 @@ document.addEventListener("click", (e) => {
     }
     gameOverCheck()
 
-    if (e.target.classList.contains("backdrop")) {
+    if (e.target.classList.contains("backdrop") || e.target.classList.contains("winPopUp")) {
         location.reload();
     }
 });
