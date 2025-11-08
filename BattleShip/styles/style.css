@@ -1,0 +1,68 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.name-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.name,
+.btn-play-div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boards-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#player-board,
+#computer-board {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  gap: 2px;
+  border: solid 1px black;
+  padding: 50px;
+
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  background: lightblue;
+  cursor: pointer;
+}
+
+.cell.hit {
+  background: red;
+}
+
+.cell.miss {
+  background: white;
+}
+
+.cell.ship {
+  background: gray;
+}
+
+.name {
+  padding: 5px 10px;
+}
+
+.btn_play {
+  padding: 8px 20px;
+  cursor: pointer;
+}

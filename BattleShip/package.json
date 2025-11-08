@@ -193,8 +193,9 @@
     "yargs-parser": "^21.1.1",
     "yocto-queue": "^0.1.0"
   },
+   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",

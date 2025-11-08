@@ -2,7 +2,7 @@ function generateId() {
     return crypto.randomUUID();
 }
 
-class Ship {
+export class Ship {
     constructor(length, position) {
         this.id = generateId();
         this.length = length;
@@ -64,7 +64,7 @@ class Ship {
 }
 
 
-class GameBoard {
+export class GameBoard {
     constructor(minSize, maxSize) {
         this.size = [[minSize, minSize], [maxSize, maxSize]]
         this.missedShot = [];
@@ -87,7 +87,7 @@ class GameBoard {
             cell[0] === position[0] && cell[1] === position[1]
         );
 
-        if (alreadyHit || alreadyMissed) return;
+        if (alreadyHit || alreadyMissed) return null;
 
         for (let ship of this.ships) {
             const hit = ship.occupiedCells.find(cell => cell[0] === position[0] && cell[1] === position[1]);
@@ -96,14 +96,15 @@ class GameBoard {
                 if (this.ships.every(ship => ship.sunked)) {
                     this.allSinked = true;
                 }
-                return;
+                return true;
             }
         }
         this.missedShot.push(position);
+        return false;
     }
 }
 
-class Player {
+export class Player {
     constructor(userName, isReal = false) {
         this.name = userName || "computer";
         this.isReal = isReal;
@@ -136,15 +137,12 @@ class Player {
             if (randomIndex > -1) { // Select random cell , and remove from allCell array
                 allCell.splice(randomIndex, 1);
             }
-            oppenantBoard.receiveAttack(randomCell)
+            const result = oppenantBoard.receiveAttack(randomCell);
+            return { position: randomCell, result: result };
         } else {
-            oppenantBoard.receiveAttack(position)
+            const result = oppenantBoard.receiveAttack(position);
+            return { position: position, result: result };
         }
     }
 }
 
-module.exports = {
-    Ship,
-    GameBoard,
-    Player
-}

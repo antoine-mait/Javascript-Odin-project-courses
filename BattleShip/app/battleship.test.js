@@ -1,4 +1,4 @@
-const { Ship, GameBoard, Player } = require('./battleship');
+import { Ship , GameBoard, Player } from "./battleship.js";
 
 describe('Ship Class', () => {
   test('should create a Ship with lenght and position', () => {
