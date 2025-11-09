@@ -46,16 +46,15 @@
   cursor: pointer;
 }
 
-.cell.hit {
-  background: red;
-}
-
 .cell.miss {
   background: white;
 }
 
 .cell.ship {
-  background: gray;
+  background: black;
+}
+.cell.hit {
+  background: red;
 }
 
 .name {

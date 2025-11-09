@@ -11,6 +11,9 @@ import {
 } from "./battleShip_html.js"
 
 const nameInput = document.querySelector(".player-name");
+const playerboardDiv = document.querySelector("#player-board")
+const computerboardDiv = document.querySelector("#computer-board")
+
 let player1 = null;
 let player2 = null;
 let gameStarted = 0;
@@ -48,11 +51,24 @@ function gameOverCheck() {
     }
 }
 
+function renderShipCell() {
+    const allPlayerCells = playerboardDiv.querySelectorAll('.ship');
+    if (allPlayerCells){
+        allPlayerCells.forEach(cell => cell.classList.remove("ship"));
+    }
+
+    player1.board.ships.forEach(ship => {
+        ship.occupiedCells.forEach(cell => {
+            const cellElement = document.querySelector("#"+player1.name + "_" + cell[0] + "_" + cell[1]);
+            cellElement.classList.add("ship");
+        });
+    });
+}
+
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn_play")) {
         gameStarted++
-        const playerboardDiv = document.querySelector("#player-board")
-        const computerboardDiv = document.querySelector("#computer-board")
+
         playerboardDiv.innerHTML = ""
         computerboardDiv.innerHTML = ""
 
@@ -61,22 +77,33 @@ document.addEventListener("click", (e) => {
         player2 = new Player("computer", false);
         renderBoard(player1.board.size, player1.name)
         renderBoard(player2.board.size, player2.name)
-
         // Random computer ships positions
-        const shipsPosition = randomShipsPosition(player1.board.size )
+        const shipsPosition = randomShipsPosition(player1.board.size)
         shipsPosition.forEach(element => {
             player2.board.placeShip(element[0], element[1])
         });
 
         // Random player ships positions
-        const playerShipsPosition = randomShipsPosition(player2.board.size )
+        const playerShipsPosition = randomShipsPosition(player2.board.size)
         playerShipsPosition.forEach(element => {
             player1.board.placeShip(element[0], element[1])
         });
-        console.log(shipsPosition)
-        console.log(playerShipsPosition)
+
+        renderShipCell();
         turns = 0;
     };
+
+    if (e.target.classList.contains("btn_random") && turns === 0) {
+        console.log("random seed")
+        player1.board.ships = [];
+
+        const playerShipsPosition = randomShipsPosition(player2.board.size)
+        playerShipsPosition.forEach(element => {
+            player1.board.placeShip(element[0], element[1])
+        });
+
+        renderShipCell();
+    }
 
     if (e.target.classList.contains("cell") && gameStarted === 1) {
         const cell = e.target
