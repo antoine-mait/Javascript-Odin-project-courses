@@ -7,7 +7,9 @@ export class Ship {
         this.id = generateId();
         this.length = length;
         this.position = position;
+        console.log("Creating ship with position:", position);
         this.occupiedCells = this.calculateOccupiedCells(position);
+        console.log("occupiedCells result:", this.occupiedCells);
         this.hitCell = [];
         this.sunked = false;
     }
@@ -23,8 +25,14 @@ export class Ship {
         // length 1
         if (position.length === 1) {
             return [position[0]]
+            
+        } else if (position[0][0] === position[1][0] && position[0][1] === position[1][1]) {
+            // START AND END ARE THE SAME - length 1 ship with 2 identical coords
+            return [position[0]]
+            
             // horizontal
-        } else if (position[0][0] === position[1][0] && position[0][1] < position[1][1] || position[0][1] > position[1][1]) {
+        } else if (position[0][0] === position[1][0] && (position[0][1] < position[1][1] || position[0][1] > position[1][1])) {
+        
             const startingPos = position[0]; //[0,0]
             const endingPos = position[1];//[0,4]
             let allPos = [startingPos];
@@ -43,7 +51,7 @@ export class Ship {
             return allPos
 
             // vertical
-        } else if (position[0][1] === position[1][1] && position[0][0] < position[1][0] || position[0][0] > position[1][0]) {
+        } else if (position[0][1] === position[1][1] && (position[0][0] < position[1][0] || position[0][0] > position[1][0])) {
             const startingPos = position[0]; //[0,0]
             const endingPos = position[1];//[4,0]
             let allPos = [startingPos];

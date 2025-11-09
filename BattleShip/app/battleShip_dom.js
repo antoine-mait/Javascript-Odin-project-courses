@@ -6,16 +6,21 @@ import {
 
 import {
     renderBoard,
-    winPopUp
+    winPopUp,
+    randomShipsPosition
 } from "./battleShip_html.js"
 
 const nameInput = document.querySelector(".player-name");
 let player1 = null;
 let player2 = null;
-
+let gameStarted = 0;
 let turns = 0;
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    renderBoard([[0, 0], [9, 9]], "player")
+    renderBoard([[0, 0], [9, 9]], "computer")
+});
 
 function computerTurns() {
     const attackResult = player2.attack(player1.board);
@@ -29,7 +34,6 @@ function computerTurns() {
     } else if (result === false) {
         cell.classList.add("miss");
     }
-
     console.log("computer attacked " + player1.name);
     turns++;
 }
@@ -37,27 +41,44 @@ function computerTurns() {
 function gameOverCheck() {
     if (player1.board.allSinked === true) {
         winPopUp(player2.name)
+        gameStarted = 0;
     } else if (player2.board.allSinked === true) {
         winPopUp(player1.name)
+        gameStarted = 0;
     }
 }
 
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn_play")) {
+        gameStarted++
+        const playerboardDiv = document.querySelector("#player-board")
+        const computerboardDiv = document.querySelector("#computer-board")
+        playerboardDiv.innerHTML = ""
+        computerboardDiv.innerHTML = ""
+
         const playerName = nameInput.value;
         player1 = new Player(playerName, true);
         player2 = new Player("computer", false);
         renderBoard(player1.board.size, player1.name)
         renderBoard(player2.board.size, player2.name)
 
-        // Temp ship position
-        player1.board.placeShip(3, [[0, 0], [0, 2]]);
-        player2.board.placeShip(3, [[0, 0], [0, 2]]);
+        // Random computer ships positions
+        const shipsPosition = randomShipsPosition(player1.board.size )
+        shipsPosition.forEach(element => {
+            player2.board.placeShip(element[0], element[1])
+        });
 
+        // Random player ships positions
+        const playerShipsPosition = randomShipsPosition(player2.board.size )
+        playerShipsPosition.forEach(element => {
+            player1.board.placeShip(element[0], element[1])
+        });
+        console.log(shipsPosition)
+        console.log(playerShipsPosition)
         turns = 0;
     };
 
-    if (e.target.classList.contains("cell")) {
+    if (e.target.classList.contains("cell") && gameStarted === 1) {
         const cell = e.target
         const position = cell.id
         const posSplit = position.split("_")
@@ -87,10 +108,15 @@ document.addEventListener("click", (e) => {
             turns++;
         }
     }
-    if (turns % 2 !== 0) {
+    if (turns % 2 !== 0 && gameStarted === 1) {
+
         computerTurns()
     }
-    gameOverCheck()
+    if (!player1) {
+        console.log("Not started yet")
+    } else {
+        gameOverCheck()
+    }
 
     if (e.target.classList.contains("backdrop") || e.target.classList.contains("winPopUp")) {
         location.reload();
